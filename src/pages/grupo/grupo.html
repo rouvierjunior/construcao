@@ -1,0 +1,38 @@
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Grupos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div [ngSwitch]="segmento" >
+      <ion-list *ngSwitchCase="'lista'" >
+          <button ion-button value="cadastro" (click)="ver('cadastro')">Cadastro</button>
+          <ion-item *ngFor="let item of dados" >
+            {{item.NOME}}<button ion-button item-end (click)="editar(item)">Editar</button>
+          </ion-item>
+      </ion-list>
+   
+      <ion-card *ngSwitchCase="'cadastro'" >
+          <button ion-button value="lista" (click)="ver('lista')" >Lista</button>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" floating>GRUPO</ion-label>
+                      <ion-input type="text" color="primary" [(ngModel)]="nome"></ion-input>
+                    </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          
+          <ion-item>
+              <button ion-button small (click)="salvar()">Salvar</button>
+          </ion-item>
+      </ion-card>
+  </div>
+</ion-content>
